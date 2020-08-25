@@ -1,0 +1,20 @@
+{
+  "name": "laravel_quicktask",
+  "description": "",
+  "main": "",
+  "authors": [
+    "LinhHoang1110 <43548369+LinhHoang1110@users.noreply.github.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/LinhHoang1110/laravel_quicktask",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.5.2"
+  }
+}
