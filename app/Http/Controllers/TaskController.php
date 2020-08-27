@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class TaskController extends Controller
 {
@@ -14,7 +15,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('tasks');
+        $tasks = Task::orderBy('created_at', 'asc')->get();
+
+        return view('tasks', ['tasks' => $tasks]);
     }
 
     /**
@@ -24,7 +27,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -35,7 +38,10 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dbUser = User::where('name', $request->user_name)->firstOrCreate(['name' => $request->user_name]);
+        $dbUser->tasks()->create(['name' => $request->name]);
+
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -44,7 +50,7 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show($id)
     {
         //
     }
@@ -55,7 +61,7 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit($id)
     {
         //
     }
@@ -67,7 +73,7 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,7 +84,7 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
         //
     }
